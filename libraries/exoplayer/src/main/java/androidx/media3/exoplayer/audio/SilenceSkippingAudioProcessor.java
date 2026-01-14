@@ -261,7 +261,8 @@ public final class SilenceSkippingAudioProcessor extends BaseAudioProcessor {
   @Override
   protected AudioFormat onConfigure(AudioFormat inputAudioFormat)
       throws UnhandledAudioFormatException {
-    if (inputAudioFormat.encoding != C.ENCODING_PCM_16BIT) {
+    if (inputAudioFormat.encoding != C.ENCODING_PCM_16BIT
+          && inputAudioFormat.encoding != C.ENCODING_PCM_FLOAT) {
       throw new UnhandledAudioFormatException(inputAudioFormat);
     }
     if (inputAudioFormat.sampleRate == Format.NO_VALUE) {
@@ -277,6 +278,11 @@ public final class SilenceSkippingAudioProcessor extends BaseAudioProcessor {
 
   @Override
   public void queueInput(ByteBuffer inputBuffer) {
+    if (inputAudioFormat.encoding == C.ENCODING_PCM_FLOAT && inputBuffer.hasRemaining()) {
+      // TODO: Handle ENCODING_PCM_FLOAT
+      replaceOutputBuffer(inputBuffer.remaining()).put(inputBuffer).flip();
+      return;
+    }
     while (inputBuffer.hasRemaining() && !hasPendingOutput()) {
       switch (state) {
         case STATE_NOISY:
