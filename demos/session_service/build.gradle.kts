@@ -36,7 +36,7 @@ android {
 
   defaultConfig {
     minSdk = libs.versions.minSdkVersion.get().toInt()
-    targetSdk = libs.versions.appTargetSdkVersion.get().toInt()
+//    targetSdk = libs.versions.appTargetSdkVersion.get().toInt()
   }
 
   buildTypes {

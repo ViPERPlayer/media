@@ -21,7 +21,7 @@ android {
   sourceSets {
     getByName("main") {
       jniLibs.srcDir("src/main/libs")
-      jni.setSrcDirs(listOf<String>()) // Disable the automatic ndk-build call by Android Studio.
+//      jni.setSrcDirs(listOf<String>()) // Disable the automatic ndk-build call by Android Studio.
     }
     getByName("androidTest").assets.srcDir("../test_data/src/test/assets")
   }
