@@ -1677,7 +1677,7 @@ public final class DefaultAudioSink implements AudioSink {
    * float PCM.
    */
   private boolean shouldUseFloatOutput(@C.PcmEncoding int pcmEncoding) {
-    return enableFloatOutput && Util.isEncodingHighResolutionPcm(pcmEncoding);
+    return enableFloatOutput/* && Util.isEncodingHighResolutionPcm(pcmEncoding)*/;
   }
 
   /**
