@@ -757,8 +757,8 @@ public final class DefaultAudioSink implements AudioSink {
         pipelineProcessors.add(toFloatPcmAudioProcessor);
       } else {
         pipelineProcessors.add(toInt16PcmAudioProcessor);
-        pipelineProcessors.add(audioProcessorChain.getAudioProcessors());
       }
+      pipelineProcessors.add(audioProcessorChain.getAudioProcessors());
       audioProcessingPipeline = new AudioProcessingPipeline(pipelineProcessors.build());
 
       // If the underlying processors of the new pipeline are the same as the existing pipeline,
@@ -1704,7 +1704,7 @@ public final class DefaultAudioSink implements AudioSink {
    * float PCM.
    */
   private boolean shouldUseFloatOutput(@C.PcmEncoding int pcmEncoding) {
-    return enableFloatOutput && Util.isEncodingHighResolutionPcm(pcmEncoding);
+    return enableFloatOutput/* && Util.isEncodingHighResolutionPcm(pcmEncoding)*/;
   }
 
   /**
